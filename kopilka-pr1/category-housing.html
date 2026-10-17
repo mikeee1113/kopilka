@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Жильё и ЖКУ — Копилка</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="img/logo.svg" type="image/svg+xml">
+</head>
+<body>
+  <header class="site-header">
+    <a class="logo" href="index.html">
+      <img src="img/logo.svg" alt="Логотип «Копилка»: зелёный кошелёк с золотой монетой" width="44" height="44">
+      <span>Копилка</span>
+    </a>
+    <nav class="site-nav" aria-label="Основное меню">
+      <ul>
+        <li><a href="index.html">Главная</a></li>
+        <li><a href="expenses.html" aria-current="true">Расходы</a></li>
+        <li><a href="add.html">Добавить запись</a></li>
+        <li><a href="contacts.html">Контакты</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="page">
+    <nav class="breadcrumbs" aria-label="Навигационная цепочка">
+      <a href="index.html">Главная</a> / <a href="expenses.html">Расходы</a> / Жильё и ЖКУ
+    </nav>
+
+    <article>
+      <header class="category-header">
+        <img src="img/categories/housing.svg" alt="Иконка категории «Жильё и ЖКУ»: дом" width="128" height="128">
+        <div>
+          <h1>Жильё и ЖКУ</h1>
+          <p class="lead">Квартплата, электричество, вода и другие коммунальные платежи. Обычно одна крупная сумма в начале месяца.</p>
+        </div>
+      </header>
+
+      <section aria-labelledby="facts-title">
+        <h2 id="facts-title">Сентябрь в цифрах</h2>
+        <dl class="stats">
+          <div>
+            <dt>Потрачено</dt>
+            <dd class="key-figure">9 870 ₽</dd>
+          </div>
+          <div>
+            <dt>Лимит на месяц</dt>
+            <dd>12 000 ₽</dd>
+          </div>
+          <div>
+            <dt>Записей</dt>
+            <dd>1</dd>
+          </div>
+          <div>
+            <dt>Средний чек</dt>
+            <dd>9 870 ₽</dd>
+          </div>
+          <div>
+            <dt>Тип расходов</dt>
+            <dd class="word">обязательные</dd>
+          </div>
+        </dl>
+        <p class="meter-line">
+          <label for="limit-meter">До лимита осталось 2 130 ₽</label>
+          <meter id="limit-meter" value="9870" min="0" max="12000" low="6000" high="9600" optimum="0">9 870 ₽ из 12 000 ₽</meter>
+        </p>
+      </section>
+
+      <section aria-labelledby="records-title">
+        <h2 id="records-title">Записи в категории</h2>
+        <ul class="expense-list">
+          <li class="expense">
+            <img src="img/categories/housing.svg" alt="Иконка категории «Жильё и ЖКУ»: дом" width="40" height="40">
+            <div class="expense-body">
+              <span class="expense-title">Квартплата за август</span>
+              <span class="expense-meta">
+                <time datetime="2026-09-01">1 сентября</time>,
+                по квитанции
+              </span>
+            </div>
+            <span class="amount">9 870 ₽</span>
+          </li>
+        </ul>
+        <p><a class="button" href="add.html">Добавить запись</a></p>
+      </section>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <p>Копилка — учебный проект по дисциплине «Введение в интернет-технологии», вариант 23.</p>
+    <p>Записывайте траты сразу — потом их уже не вспомнить.</p>
+  </footer>
+</body>
+</html>

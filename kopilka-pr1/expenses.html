@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Расходы — Копилка</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="img/logo.svg" type="image/svg+xml">
+</head>
+<body>
+  <header class="site-header">
+    <a class="logo" href="index.html">
+      <img src="img/logo.svg" alt="Логотип «Копилка»: зелёный кошелёк с золотой монетой" width="44" height="44">
+      <span>Копилка</span>
+    </a>
+    <nav class="site-nav" aria-label="Основное меню">
+      <ul>
+        <li><a href="index.html">Главная</a></li>
+        <li><a href="expenses.html" aria-current="page">Расходы</a></li>
+        <li><a href="add.html">Добавить запись</a></li>
+        <li><a href="contacts.html">Контакты</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="page">
+    <h1>Расходы за сентябрь</h1>
+    <p class="lead">24 записи на сумму 46 960 ₽.</p>
+
+    <form class="filters" action="expenses.html" method="get" aria-label="Фильтр и сортировка">
+      <div class="field">
+        <label for="filter-category">Категория</label>
+        <select id="filter-category" name="category">
+          <option value="">Все категории</option>
+          <option value="groceries">Продукты</option>
+          <option value="cafe">Кафе и рестораны</option>
+          <option value="transport">Транспорт</option>
+          <option value="housing">Жильё и ЖКУ</option>
+          <option value="connection">Связь и интернет</option>
+          <option value="health">Здоровье</option>
+          <option value="clothes">Одежда и обувь</option>
+          <option value="entertainment">Развлечения</option>
+          <option value="education">Образование</option>
+          <option value="sport">Спорт</option>
+          <option value="gifts">Подарки</option>
+          <option value="home">Дом и быт</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="filter-from">С даты</label>
+        <input id="filter-from" name="from" type="date" value="2026-09-01">
+      </div>
+      <div class="field">
+        <label for="filter-to">По дату</label>
+        <input id="filter-to" name="to" type="date" value="2026-09-30">
+      </div>
+      <div class="field">
+        <label for="filter-sort">Сортировка</label>
+        <select id="filter-sort" name="sort">
+          <option value="date-desc">Сначала новые</option>
+          <option value="date-asc">Сначала старые</option>
+          <option value="amount-desc">По убыванию суммы</option>
+          <option value="amount-asc">По возрастанию суммы</option>
+        </select>
+      </div>
+      <button class="button" type="submit">Показать</button>
+    </form>
+
+    <section aria-labelledby="categories-title">
+      <h2 id="categories-title">Категории</h2>
+      <ul class="chips">
+        <li>
+          <a class="chip" href="category-groceries.html">
+            <img src="img/categories/groceries.svg" alt="Иконка категории «Продукты»: корзина с покупками" width="24" height="24">
+            Продукты
+          </a>
+        </li>
+        <li>
+          <a class="chip" href="category-cafe.html">
+            <img src="img/categories/cafe.svg" alt="Иконка категории «Кафе и рестораны»: чашка кофе" width="24" height="24">
+            Кафе и рестораны
+          </a>
+        </li>
+        <li>
+          <a class="chip" href="category-transport.html">
+            <img src="img/categories/transport.svg" alt="Иконка категории «Транспорт»: автобус" width="24" height="24">
+            Транспорт
+          </a>
+        </li>
+        <li>
+          <a class="chip" href="category-housing.html">
+            <img src="img/categories/housing.svg" alt="Иконка категории «Жильё и ЖКУ»: дом" width="24" height="24">
+            Жильё и ЖКУ
+          </a>
+        </li>
+        <li>
+          <a class="chip" href="category-connection.html">
+            <img src="img/categories/connection.svg" alt="Иконка категории «Связь и интернет»: значок Wi-Fi" width="24" height="24">
+            Связь и интернет
+          </a>
+        </li>
+        <li>
+          <a class="chip" href="category-health.html">
+            <img src="img/categories/health.svg" alt="Иконка категории «Здоровье»: сердце" width="24" height="24">
+            Здоровье
+          </a>
+        </li>
+        <li>
+          <a class="chip" href="category-clothes.html">
+            <img src="img/categories/clothes.svg" alt="Иконка категории «Одежда и обувь»: футболка" width="24" height="24">
+            Одежда и обувь
+          </a>
+        </li>
+        <li>
+          <a class="chip" href="category-entertainment.html">
+            <img src="img/categories/entertainment.svg" alt="Иконка категории «Развлечения»: билет" width="24" height="24">
+            Развлечения
+          </a>
+        </li>
+        <li>
+          <a class="chip" href="category-education.html">
+            <img src="img/categories/education.svg" alt="Иконка категории «Образование»: раскрытая книга" width="24" height="24">
+            Образование
+          </a>
+        </li>
+        <li>
+          <a class="chip" href="category-sport.html">
+            <img src="img/categories/sport.svg" alt="Иконка категории «Спорт»: гантель" width="24" height="24">
+            Спорт
+          </a>
+        </li>
+        <li>
+          <a class="chip" href="category-gifts.html">
+            <img src="img/categories/gifts.svg" alt="Иконка категории «Подарки»: коробка с бантом" width="24" height="24">
+            Подарки
+          </a>
+        </li>
+        <li>
+          <a class="chip" href="category-home.html">
+            <img src="img/categories/home.svg" alt="Иконка категории «Дом и быт»: лампочка" width="24" height="24">
+            Дом и быт
+          </a>
+        </li>
+      </ul>
+    </section>
+
+    <section aria-labelledby="list-title">
+      <h2 id="list-title">Все записи</h2>
+      <ul class="expense-list">
+        <li class="expense">
+          <img src="img/categories/cafe.svg" alt="Иконка категории «Кафе и рестораны»: чашка кофе" width="40" height="40">
+          <div class="expense-body">
+            <span class="expense-title">Обед в столовой</span>
+            <span class="expense-meta">
+              <time datetime="2026-09-18">18 сентября</time>,
+              <a href="category-cafe.html">Кафе и рестораны</a>
+            </span>
+          </div>
+          <span class="amount">340 ₽</span>
+        </li>
+        <li class="expense">
+          <img src="img/categories/education.svg" alt="Иконка категории «Образование»: раскрытая книга" width="40" height="40">
+          <div class="expense-body">
+            <span class="expense-title">Онлайн-курс по CSS</span>
+            <span class="expense-meta">
+              <time datetime="2026-09-17">17 сентября</time>,
+              <a href="category-education.html">Образование</a>
+            </span>
+          </div>
+          <span class="amount">1 990 ₽</span>
+        </li>
+        <li class="expense">
+          <img src="img/categories/home.svg" alt="Иконка категории «Дом и быт»: лампочка" width="40" height="40">
+          <div class="expense-body">
+            <span class="expense-title">Средства для уборки</span>
+            <span class="expense-meta">
+              <time datetime="2026-09-16">16 сентября</time>,
+              <a href="category-home.html">Дом и быт</a>
+            </span>
+          </div>
+          <span class="amount">560 ₽</span>
+        </li>
+        <li class="expense">
+          <img src="img/categories/groceries.svg" alt="Иконка категории «Продукты»: корзина с покупками" width="40" height="40">
+          <div class="expense-body">
+            <span class="expense-title">Продукты на неделю</span>
+            <span class="expense-meta">
+              <time datetime="2026-09-16">16 сентября</time>,
+              <a href="category-groceries.html">Продукты</a>
+            </span>
+          </div>
+          <span class="amount">3 120 ₽</span>
+        </li>
+        <li class="expense">
+          <img src="img/categories/health.svg" alt="Иконка категории «Здоровье»: сердце" width="40" height="40">
+          <div class="expense-body">
+            <span class="expense-title">Приём у стоматолога</span>
+            <span class="expense-meta">
+              <time datetime="2026-09-15">15 сентября</time>,
+              <a href="category-health.html">Здоровье</a>
+            </span>
+          </div>
+          <span class="amount">2 200 ₽</span>
+        </li>
+        <li class="expense">
+          <img src="img/categories/transport.svg" alt="Иконка категории «Транспорт»: автобус" width="40" height="40">
+          <div class="expense-body">
+            <span class="expense-title">Такси до вокзала</span>
+            <span class="expense-meta">
+              <time datetime="2026-09-14">14 сентября</time>,
+              <a href="category-transport.html">Транспорт</a>
+            </span>
+          </div>
+          <span class="amount">480 ₽</span>
+        </li>
+        <li class="expense">
+          <img src="img/categories/entertainment.svg" alt="Иконка категории «Развлечения»: билет" width="40" height="40">
+          <div class="expense-body">
+            <span class="expense-title">Настольная игра</span>
+            <span class="expense-meta">
+              <time datetime="2026-09-13">13 сентября</time>,
+              <a href="category-entertainment.html">Развлечения</a>
+            </span>
+          </div>
+          <span class="amount">1 800 ₽</span>
+        </li>
+        <li class="expense">
+          <img src="img/categories/cafe.svg" alt="Иконка категории «Кафе и рестораны»: чашка кофе" width="40" height="40">
+          <div class="expense-body">
+            <span class="expense-title">Ужин в кафе</span>
+            <span class="expense-meta">
+              <time datetime="2026-09-12">12 сентября</time>,
+              <a href="category-cafe.html">Кафе и рестораны</a>
+            </span>
+          </div>
+          <span class="amount">1 450 ₽</span>
+        </li>
+        <li class="expense">
+          <img src="img/categories/gifts.svg" alt="Иконка категории «Подарки»: коробка с бантом" width="40" height="40">
+          <div class="expense-body">
+            <span class="expense-title">Подарок маме</span>
+            <span class="expense-meta">
+              <time datetime="2026-09-12">12 сентября</time>,
+              <a href="category-gifts.html">Подарки</a>,
+              день рождения
+            </span>
+          </div>
+          <span class="amount">2 500 ₽</span>
+        </li>
+        <li class="expense">
+          <img src="img/categories/connection.svg" alt="Иконка категории «Связь и интернет»: значок Wi-Fi" width="40" height="40">
+          <div class="expense-body">
+            <span class="expense-title">Домашний интернет</span>
+            <span class="expense-meta">
+              <time datetime="2026-09-11">11 сентября</time>,
+              <a href="category-connection.html">Связь и интернет</a>
+            </span>
+          </div>
+          <span class="amount">700 ₽</span>
+        </li>
+        <li class="expense">
+          <img src="img/categories/clothes.svg" alt="Иконка категории «Одежда и обувь»: футболка" width="40" height="40">
+          <div class="expense-body">
+            <span class="expense-title">Кроссовки</span>
+            <span class="expense-meta">
+              <time datetime="2026-09-10">10 сентября</time>,
+              <a href="category-clothes.html">Одежда и обувь</a>,
+              распродажа
+            </span>
+          </div>
+          <span class="amount">4 590 ₽</span>
+        </li>
+        <li class="expense">
+          <img src="img/categories/cafe.svg" alt="Иконка категории «Кафе и рестораны»: чашка кофе" width="40" height="40">
+          <div class="expense-body">
+            <span class="expense-title">Кофе с собой</span>
+            <span class="expense-meta">
+              <time datetime="2026-09-10">10 сентября</time>,
+              <a href="category-cafe.html">Кафе и рестораны</a>
+            </span>
+          </div>
+          <span class="amount">210 ₽</span>
+        </li>
+        <li class="expense">
+          <img src="img/categories/groceries.svg" alt="Иконка категории «Продукты»: корзина с покупками" width="40" height="40">
+          <div class="expense-body">
+            <span class="expense-title">Продукты на неделю</span>
+            <span class="expense-meta">
+              <time datetime="2026-09-09">9 сентября</time>,
+              <a href="category-groceries.html">Продукты</a>
+            </span>
+          </div>
+          <span class="amount">2 980 ₽</span>
+        </li>
+        <li class="expense">
+          <img src="img/categories/health.svg" alt="Иконка категории «Здоровье»: сердце" width="40" height="40">
+          <div class="expense-body">
+            <span class="expense-title">Витамины</span>
+            <span class="expense-meta">
+              <time datetime="2026-09-08">8 сентября</time>,
+              <a href="category-health.html">Здоровье</a>,
+              аптека
+            </span>
+          </div>
+          <span class="amount">890 ₽</span>
+        </li>
+        <li class="expense">
+          <img src="img/categories/home.svg" alt="Иконка категории «Дом и быт»: лампочка" width="40" height="40">
+          <div class="expense-body">
+            <span class="expense-title">Лампочки и удлинитель</span>
+            <span class="expense-meta">
+              <time datetime="2026-09-07">7 сентября</time>,
+              <a href="category-home.html">Дом и быт</a>,
+              хозяйственный магазин
+            </span>
+          </div>
+          <span class="amount">640 ₽</span>
+        </li>
+        <li class="expense">
+          <img src="img/categories/groceries.svg" alt="Иконка категории «Продукты»: корзина с покупками" width="40" height="40">
+          <div class="expense-body">
+            <span class="expense-title">Фрукты и овощи с рынка</span>
+            <span class="expense-meta">
+              <time datetime="2026-09-06">6 сентября</time>,
+              <a href="category-groceries.html">Продукты</a>
+            </span>
+          </div>
+          <span class="amount">780 ₽</span>
+        </li>
+        <li class="expense">
+          <img src="img/categories/entertainment.svg" alt="Иконка категории «Развлечения»: билет" width="40" height="40">
+          <div class="expense-body">
+            <span class="expense-title">Кино с друзьями</span>
+            <span class="expense-meta">
+              <time datetime="2026-09-06">6 сентября</time>,
+              <a href="category-entertainment.html">Развлечения</a>,
+              два билета
+            </span>
+          </div>
+          <span class="amount">900 ₽</span>
+        </li>
+        <li class="expense">
+          <img src="img/categories/sport.svg" alt="Иконка категории «Спорт»: гантель" width="40" height="40">
+          <div class="expense-body">
+            <span class="expense-title">Абонемент в бассейн</span>
+            <span class="expense-meta">
+              <time datetime="2026-09-05">5 сентября</time>,
+              <a href="category-sport.html">Спорт</a>,
+              8 занятий
+            </span>
+          </div>
+          <span class="amount">2 400 ₽</span>
+        </li>
+        <li class="expense">
+          <img src="img/categories/cafe.svg" alt="Иконка категории «Кафе и рестораны»: чашка кофе" width="40" height="40">
+          <div class="expense-body">
+            <span class="expense-title">Обед в столовой</span>
+            <span class="expense-meta">
+              <time datetime="2026-09-04">4 сентября</time>,
+              <a href="category-cafe.html">Кафе и рестораны</a>
+            </span>
+          </div>
+          <span class="amount">320 ₽</span>
+        </li>
+        <li class="expense">
+          <img src="img/categories/education.svg" alt="Иконка категории «Образование»: раскрытая книга" width="40" height="40">
+          <div class="expense-body">
+            <span class="expense-title">Учебник по веб-разработке</span>
+            <span class="expense-meta">
+              <time datetime="2026-09-03">3 сентября</time>,
+              <a href="category-education.html">Образование</a>,
+              бумажная версия
+            </span>
+          </div>
+          <span class="amount">1 450 ₽</span>
+        </li>
+        <li class="expense">
+          <img src="img/categories/transport.svg" alt="Иконка категории «Транспорт»: автобус" width="40" height="40">
+          <div class="expense-body">
+            <span class="expense-title">Проездной на месяц</span>
+            <span class="expense-meta">
+              <time datetime="2026-09-02">2 сентября</time>,
+              <a href="category-transport.html">Транспорт</a>,
+              единый, 70 поездок
+            </span>
+          </div>
+          <span class="amount">2 900 ₽</span>
+        </li>
+        <li class="expense">
+          <img src="img/categories/groceries.svg" alt="Иконка категории «Продукты»: корзина с покупками" width="40" height="40">
+          <div class="expense-body">
+            <span class="expense-title">Продукты на неделю</span>
+            <span class="expense-meta">
+              <time datetime="2026-09-02">2 сентября</time>,
+              <a href="category-groceries.html">Продукты</a>,
+              супермаркет у дома
+            </span>
+          </div>
+          <span class="amount">3 240 ₽</span>
+        </li>
+        <li class="expense">
+          <img src="img/categories/connection.svg" alt="Иконка категории «Связь и интернет»: значок Wi-Fi" width="40" height="40">
+          <div class="expense-body">
+            <span class="expense-title">Мобильная связь</span>
+            <span class="expense-meta">
+              <time datetime="2026-09-01">1 сентября</time>,
+              <a href="category-connection.html">Связь и интернет</a>,
+              тариф на месяц
+            </span>
+          </div>
+          <span class="amount">650 ₽</span>
+        </li>
+        <li class="expense">
+          <img src="img/categories/housing.svg" alt="Иконка категории «Жильё и ЖКУ»: дом" width="40" height="40">
+          <div class="expense-body">
+            <span class="expense-title">Квартплата за август</span>
+            <span class="expense-meta">
+              <time datetime="2026-09-01">1 сентября</time>,
+              <a href="category-housing.html">Жильё и ЖКУ</a>,
+              по квитанции
+            </span>
+          </div>
+          <span class="amount">9 870 ₽</span>
+        </li>
+      </ul>
+      <p class="total-line">Итого за месяц <span class="amount">46 960 ₽</span></p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Копилка — учебный проект по дисциплине «Введение в интернет-технологии», вариант 23.</p>
+    <p>Записывайте траты сразу — потом их уже не вспомнить.</p>
+  </footer>
+</body>
+</html>

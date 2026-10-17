@@ -1,0 +1,542 @@
+/* ============================================================
+   Копилка — общий файл стилей для всех страниц сайта.
+   Порядок: переменные → базовые элементы → шапка и подвал →
+   общие блоки (кнопки, формы, списки) → блоки страниц → адаптив.
+   ============================================================ */
+
+/* ---------- Переменные: цвета, шрифт, размеры ---------- */
+:root {
+  --paper: #f4f6f2;        /* фон страницы */
+  --surface: #ffffff;      /* фон карточек и форм */
+  --ink: #1c2420;          /* основной текст */
+  --muted: #4f5a53;        /* второстепенный текст */
+  --line: #d5dcd6;         /* рамки и разделители */
+  --input-border: #7a877e; /* рамка полей формы */
+  --green: #1f5f3f;        /* ссылки и кнопки */
+  --green-dark: #164a31;   /* ссылки и кнопки при наведении */
+  --gold: #a67f00;         /* рамка фокуса */
+  --radius: 10px;          /* скругление углов */
+  --page-width: 1040px;    /* наибольшая ширина содержимого */
+  --font: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+/* ---------- Базовые элементы ---------- */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font);
+  font-size: 1rem;
+  line-height: 1.55;
+  color: var(--ink);
+  background: var(--paper);
+}
+
+h1,
+h2,
+h3 {
+  margin: 0 0 0.5em;
+  line-height: 1.2;
+}
+
+h1 {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+}
+
+h2 {
+  margin-top: 1.5em;
+  font-size: 1.35rem;
+}
+
+h3 {
+  margin-top: 1.25em;
+  font-size: 1.1rem;
+}
+
+p {
+  margin: 0 0 1em;
+}
+
+a {
+  color: var(--green);
+}
+
+a:hover {
+  color: var(--green-dark);
+}
+
+/* Изображение никогда не шире своего контейнера */
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Видимая рамка у элемента, на который перешли клавишей Tab */
+:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 2px;
+}
+
+/* ---------- Шапка и меню ---------- */
+.site-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem 1.5rem;
+  padding: 0.75rem 1rem;
+  background: var(--surface);
+  border-bottom: 1px solid var(--line);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--ink);
+  font-size: 1.3rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.site-nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.25rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.site-nav a {
+  display: inline-block;
+  padding: 0.35rem 0;
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 3px solid transparent;
+}
+
+.site-nav a:hover {
+  border-bottom-color: var(--line);
+}
+
+/* Пункт текущей страницы или текущего раздела */
+.site-nav a[aria-current] {
+  font-weight: 600;
+  border-bottom-color: var(--green);
+}
+
+/* ---------- Основная часть и подвал ---------- */
+.page {
+  max-width: var(--page-width);
+  margin: 0 auto;
+  padding: 1.5rem 1rem 3rem;
+}
+
+.lead {
+  max-width: 60ch;
+  color: var(--muted);
+  font-size: 1.1rem;
+}
+
+.site-footer {
+  padding: 1.5rem 1rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+  text-align: center;
+  border-top: 1px solid var(--line);
+}
+
+.site-footer p {
+  margin: 0 0 0.25em;
+}
+
+/* ---------- Кнопки ---------- */
+.button {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  color: #ffffff;
+  font: inherit;
+  font-weight: 600;
+  text-decoration: none;
+  background: var(--green);
+  border: 2px solid var(--green);
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+
+.button:hover {
+  color: #ffffff;
+  background: var(--green-dark);
+  border-color: var(--green-dark);
+}
+
+.button-secondary {
+  color: var(--green);
+  background: transparent;
+}
+
+.button-secondary:hover {
+  color: var(--green-dark);
+  background: var(--surface);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+/* ---------- Формы ---------- */
+.field {
+  display: grid;
+  gap: 0.3rem;
+  margin-bottom: 1rem;
+}
+
+.field label {
+  font-weight: 600;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  min-height: 44px;
+  padding: 0.5rem 0.75rem;
+  color: var(--ink);
+  font: inherit;
+  background: var(--surface);
+  border: 1px solid var(--input-border);
+  border-radius: var(--radius);
+}
+
+textarea {
+  resize: vertical;
+}
+
+.card-form {
+  padding: 1.25rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+/* Панель фильтра: поля в ряд, на узком экране сами переносятся */
+.filters {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 0.75rem 1rem;
+  align-items: end;
+  padding: 1rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.filters .field {
+  margin-bottom: 0;
+}
+
+/* ---------- Список расходов (на трёх страницах) ---------- */
+.expense-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Строка записи: иконка | название и детали | сумма */
+.expense {
+  display: grid;
+  grid-template-columns: 40px 1fr auto;
+  gap: 0.75rem;
+  align-items: center;
+  padding: 0.6rem 0;
+  border-bottom: 1px dotted var(--line);
+}
+
+.expense-body {
+  display: grid;
+}
+
+.expense-title {
+  font-weight: 600;
+}
+
+.expense-meta {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+/* Суммы: цифры одинаковой ширины, без переноса строки */
+.amount {
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.total-line {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-top: 0.75rem;
+  font-size: 1.1rem;
+}
+
+/* ---------- Карточки с цифрами и шкалы ---------- */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+  margin: 0 0 1rem;
+}
+
+.stats div {
+  padding: 1rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.stats dt {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.stats dd {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.stats .key-figure {
+  color: var(--green);
+}
+
+/* Значение-слово вместо числа — мельче, чтобы поместилось */
+.stats .word {
+  font-size: 1.1rem;
+}
+
+.meter-line {
+  display: grid;
+  gap: 0.35rem;
+}
+
+meter {
+  width: 100%;
+  height: 12px;
+}
+
+/* ---------- Главная ---------- */
+.hero {
+  padding: 1.5rem 0 1rem;
+}
+
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 1rem;
+  margin: 0 0 1rem;
+  padding: 0;
+  list-style: none;
+}
+
+.category-card {
+  display: grid;
+  gap: 0.5rem;
+  height: 100%;
+  padding: 1rem;
+  color: var(--ink);
+  text-decoration: none;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.category-card:hover {
+  border-color: var(--green);
+}
+
+.category-name {
+  font-weight: 600;
+}
+
+.category-spent {
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.steps {
+  display: grid;
+  gap: 0.5rem;
+  max-width: 60ch;
+}
+
+/* ---------- Расходы: категории-«таблетки» ---------- */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.3rem 0.75rem 0.3rem 0.4rem;
+  color: var(--ink);
+  font-size: 0.95rem;
+  text-decoration: none;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+}
+
+.chip:hover {
+  border-color: var(--green);
+}
+
+/* ---------- Страница категории ---------- */
+.breadcrumbs {
+  margin-bottom: 1rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.category-header {
+  display: grid;
+  grid-template-columns: 128px 1fr;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+/* ---------- Добавление записи и контакты: две колонки ---------- */
+.two-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+.two-columns h2 {
+  margin-top: 0;
+}
+
+/* Строка итога: категория | шкала | сумма */
+.summary-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.summary-list li {
+  display: grid;
+  grid-template-columns: minmax(120px, 1fr) 2fr 6.5rem;
+  gap: 1rem;
+  align-items: center;
+  padding: 0.5rem 0;
+  border-bottom: 1px dotted var(--line);
+}
+
+.summary-list .amount {
+  text-align: right;
+}
+
+/* ---------- Контакты ---------- */
+.contact-card {
+  font-style: normal;
+}
+
+.hours {
+  display: grid;
+  gap: 0.5rem;
+  margin: 0 0 1rem;
+}
+
+.hours div {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px dotted var(--line);
+}
+
+.hours dd {
+  margin: 0;
+  font-weight: 600;
+}
+
+.slogan {
+  color: var(--green);
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+/* ---------- Страница 404 ---------- */
+.not-found {
+  padding: 3rem 0;
+  text-align: center;
+}
+
+.error-code {
+  margin: 0;
+  color: var(--muted);
+  font-size: 5rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.not-found .lead {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.not-found .actions {
+  justify-content: center;
+}
+
+/* ---------- Адаптив: планшет ---------- */
+@media (max-width: 720px) {
+  .two-columns {
+    grid-template-columns: 1fr;
+  }
+
+  .category-header {
+    grid-template-columns: 96px 1fr;
+    gap: 1rem;
+  }
+
+  .summary-list li {
+    grid-template-columns: 1fr auto;
+  }
+
+  /* Шкала уходит на отдельную строку под названием и суммой */
+  .summary-list meter {
+    grid-column: 1 / -1;
+  }
+}
+
+/* ---------- Адаптив: телефон ---------- */
+@media (max-width: 420px) {
+  .site-header,
+  .site-nav ul {
+    justify-content: center;
+  }
+
+  .category-header {
+    grid-template-columns: 1fr;
+  }
+
+  .stats {
+    grid-template-columns: 1fr 1fr;
+  }
+}

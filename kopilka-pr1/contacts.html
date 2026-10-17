@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Контакты — Копилка</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="img/logo.svg" type="image/svg+xml">
+</head>
+<body>
+  <header class="site-header">
+    <a class="logo" href="index.html">
+      <img src="img/logo.svg" alt="Логотип «Копилка»: зелёный кошелёк с золотой монетой" width="44" height="44">
+      <span>Копилка</span>
+    </a>
+    <nav class="site-nav" aria-label="Основное меню">
+      <ul>
+        <li><a href="index.html">Главная</a></li>
+        <li><a href="expenses.html">Расходы</a></li>
+        <li><a href="add.html">Добавить запись</a></li>
+        <li><a href="contacts.html" aria-current="page">Контакты</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="page">
+    <h1>Контакты</h1>
+    <p class="lead">Вопросы, найденные ошибки и предложения по сайту — пишите или звоните.</p>
+
+    <div class="two-columns">
+      <section aria-labelledby="where-title">
+        <h2 id="where-title">Как с нами связаться</h2>
+        <address class="contact-card">
+          <p><strong>Адрес</strong><br>190005, Санкт-Петербург, 1-я Красноармейская ул., д. 1</p>
+          <p><strong>Телефон</strong><br><a href="tel:+78125552323">+7 (812) 555-23-23</a></p>
+          <p><strong>Почта</strong><br><a href="mailto:kopilka@example.com">kopilka@example.com</a></p>
+        </address>
+        <h3>Режим работы поддержки</h3>
+        <dl class="hours">
+          <div><dt>Понедельник — пятница</dt><dd>10:00 — 18:00</dd></div>
+          <div><dt>Суббота</dt><dd>11:00 — 15:00</dd></div>
+          <div><dt>Воскресенье</dt><dd>выходной</dd></div>
+        </dl>
+        <p class="slogan">Записывайте траты сразу — потом их уже не вспомнить.</p>
+      </section>
+
+      <form class="card-form" action="contacts.html" method="post" aria-labelledby="feedback-title">
+        <h2 id="feedback-title">Написать нам</h2>
+        <div class="field">
+          <label for="name">Ваше имя</label>
+          <input id="name" name="name" type="text" maxlength="60" autocomplete="name" required>
+        </div>
+        <div class="field">
+          <label for="email">Электронная почта</label>
+          <input id="email" name="email" type="email" placeholder="name@example.com" autocomplete="email" required>
+        </div>
+        <div class="field">
+          <label for="topic">Тема</label>
+          <select id="topic" name="topic">
+            <option value="question">Вопрос</option>
+            <option value="bug">Ошибка на сайте</option>
+            <option value="idea">Предложение</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="message">Сообщение</label>
+          <textarea id="message" name="message" rows="5" required></textarea>
+        </div>
+        <button class="button" type="submit">Отправить</button>
+      </form>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>Копилка — учебный проект по дисциплине «Введение в интернет-технологии», вариант 23.</p>
+    <p>Записывайте траты сразу — потом их уже не вспомнить.</p>
+  </footer>
+</body>
+</html>

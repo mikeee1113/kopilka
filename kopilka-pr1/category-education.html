@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Образование — Копилка</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="img/logo.svg" type="image/svg+xml">
+</head>
+<body>
+  <header class="site-header">
+    <a class="logo" href="index.html">
+      <img src="img/logo.svg" alt="Логотип «Копилка»: зелёный кошелёк с золотой монетой" width="44" height="44">
+      <span>Копилка</span>
+    </a>
+    <nav class="site-nav" aria-label="Основное меню">
+      <ul>
+        <li><a href="index.html">Главная</a></li>
+        <li><a href="expenses.html" aria-current="true">Расходы</a></li>
+        <li><a href="add.html">Добавить запись</a></li>
+        <li><a href="contacts.html">Контакты</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="page">
+    <nav class="breadcrumbs" aria-label="Навигационная цепочка">
+      <a href="index.html">Главная</a> / <a href="expenses.html">Расходы</a> / Образование
+    </nav>
+
+    <article>
+      <header class="category-header">
+        <img src="img/categories/education.svg" alt="Иконка категории «Образование»: раскрытая книга" width="128" height="128">
+        <div>
+          <h1>Образование</h1>
+          <p class="lead">Учебники, онлайн-курсы, канцелярия и всё, что нужно для учёбы.</p>
+        </div>
+      </header>
+
+      <section aria-labelledby="facts-title">
+        <h2 id="facts-title">Сентябрь в цифрах</h2>
+        <dl class="stats">
+          <div>
+            <dt>Потрачено</dt>
+            <dd class="key-figure">3 440 ₽</dd>
+          </div>
+          <div>
+            <dt>Лимит на месяц</dt>
+            <dd>5 000 ₽</dd>
+          </div>
+          <div>
+            <dt>Записей</dt>
+            <dd>2</dd>
+          </div>
+          <div>
+            <dt>Средний чек</dt>
+            <dd>1 720 ₽</dd>
+          </div>
+          <div>
+            <dt>Тип расходов</dt>
+            <dd class="word">необязательные</dd>
+          </div>
+        </dl>
+        <p class="meter-line">
+          <label for="limit-meter">До лимита осталось 1 560 ₽</label>
+          <meter id="limit-meter" value="3440" min="0" max="5000" low="2500" high="4000" optimum="0">3 440 ₽ из 5 000 ₽</meter>
+        </p>
+      </section>
+
+      <section aria-labelledby="records-title">
+        <h2 id="records-title">Записи в категории</h2>
+        <ul class="expense-list">
+          <li class="expense">
+            <img src="img/categories/education.svg" alt="Иконка категории «Образование»: раскрытая книга" width="40" height="40">
+            <div class="expense-body">
+              <span class="expense-title">Онлайн-курс по CSS</span>
+              <span class="expense-meta">
+                <time datetime="2026-09-17">17 сентября</time>
+              </span>
+            </div>
+            <span class="amount">1 990 ₽</span>
+          </li>
+          <li class="expense">
+            <img src="img/categories/education.svg" alt="Иконка категории «Образование»: раскрытая книга" width="40" height="40">
+            <div class="expense-body">
+              <span class="expense-title">Учебник по веб-разработке</span>
+              <span class="expense-meta">
+                <time datetime="2026-09-03">3 сентября</time>,
+                бумажная версия
+              </span>
+            </div>
+            <span class="amount">1 450 ₽</span>
+          </li>
+        </ul>
+        <p><a class="button" href="add.html">Добавить запись</a></p>
+      </section>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <p>Копилка — учебный проект по дисциплине «Введение в интернет-технологии», вариант 23.</p>
+    <p>Записывайте траты сразу — потом их уже не вспомнить.</p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Связь и интернет — Копилка</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="img/logo.svg" type="image/svg+xml">
+</head>
+<body>
+  <header class="site-header">
+    <a class="logo" href="index.html">
+      <img src="img/logo.svg" alt="Логотип «Копилка»: зелёный кошелёк с золотой монетой" width="44" height="44">
+      <span>Копилка</span>
+    </a>
+    <nav class="site-nav" aria-label="Основное меню">
+      <ul>
+        <li><a href="index.html">Главная</a></li>
+        <li><a href="expenses.html" aria-current="true">Расходы</a></li>
+        <li><a href="add.html">Добавить запись</a></li>
+        <li><a href="contacts.html">Контакты</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="page">
+    <nav class="breadcrumbs" aria-label="Навигационная цепочка">
+      <a href="index.html">Главная</a> / <a href="expenses.html">Расходы</a> / Связь и интернет
+    </nav>
+
+    <article>
+      <header class="category-header">
+        <img src="img/categories/connection.svg" alt="Иконка категории «Связь и интернет»: значок Wi-Fi" width="128" height="128">
+        <div>
+          <h1>Связь и интернет</h1>
+          <p class="lead">Мобильный тариф, домашний интернет и подписки на сервисы.</p>
+        </div>
+      </header>
+
+      <section aria-labelledby="facts-title">
+        <h2 id="facts-title">Сентябрь в цифрах</h2>
+        <dl class="stats">
+          <div>
+            <dt>Потрачено</dt>
+            <dd class="key-figure">1 350 ₽</dd>
+          </div>
+          <div>
+            <dt>Лимит на месяц</dt>
+            <dd>1 500 ₽</dd>
+          </div>
+          <div>
+            <dt>Записей</dt>
+            <dd>2</dd>
+          </div>
+          <div>
+            <dt>Средний чек</dt>
+            <dd>675 ₽</dd>
+          </div>
+          <div>
+            <dt>Тип расходов</dt>
+            <dd class="word">обязательные</dd>
+          </div>
+        </dl>
+        <p class="meter-line">
+          <label for="limit-meter">До лимита осталось 150 ₽</label>
+          <meter id="limit-meter" value="1350" min="0" max="1500" low="750" high="1200" optimum="0">1 350 ₽ из 1 500 ₽</meter>
+        </p>
+      </section>
+
+      <section aria-labelledby="records-title">
+        <h2 id="records-title">Записи в категории</h2>
+        <ul class="expense-list">
+          <li class="expense">
+            <img src="img/categories/connection.svg" alt="Иконка категории «Связь и интернет»: значок Wi-Fi" width="40" height="40">
+            <div class="expense-body">
+              <span class="expense-title">Домашний интернет</span>
+              <span class="expense-meta">
+                <time datetime="2026-09-11">11 сентября</time>
+              </span>
+            </div>
+            <span class="amount">700 ₽</span>
+          </li>
+          <li class="expense">
+            <img src="img/categories/connection.svg" alt="Иконка категории «Связь и интернет»: значок Wi-Fi" width="40" height="40">
+            <div class="expense-body">
+              <span class="expense-title">Мобильная связь</span>
+              <span class="expense-meta">
+                <time datetime="2026-09-01">1 сентября</time>,
+                тариф на месяц
+              </span>
+            </div>
+            <span class="amount">650 ₽</span>
+          </li>
+        </ul>
+        <p><a class="button" href="add.html">Добавить запись</a></p>
+      </section>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <p>Копилка — учебный проект по дисциплине «Введение в интернет-технологии», вариант 23.</p>
+    <p>Записывайте траты сразу — потом их уже не вспомнить.</p>
+  </footer>
+</body>
+</html>

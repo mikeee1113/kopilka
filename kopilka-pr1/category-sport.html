@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Спорт — Копилка</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="img/logo.svg" type="image/svg+xml">
+</head>
+<body>
+  <header class="site-header">
+    <a class="logo" href="index.html">
+      <img src="img/logo.svg" alt="Логотип «Копилка»: зелёный кошелёк с золотой монетой" width="44" height="44">
+      <span>Копилка</span>
+    </a>
+    <nav class="site-nav" aria-label="Основное меню">
+      <ul>
+        <li><a href="index.html">Главная</a></li>
+        <li><a href="expenses.html" aria-current="true">Расходы</a></li>
+        <li><a href="add.html">Добавить запись</a></li>
+        <li><a href="contacts.html">Контакты</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="page">
+    <nav class="breadcrumbs" aria-label="Навигационная цепочка">
+      <a href="index.html">Главная</a> / <a href="expenses.html">Расходы</a> / Спорт
+    </nav>
+
+    <article>
+      <header class="category-header">
+        <img src="img/categories/sport.svg" alt="Иконка категории «Спорт»: гантель" width="128" height="128">
+        <div>
+          <h1>Спорт</h1>
+          <p class="lead">Абонементы в зал и бассейн, экипировка, участие в соревнованиях.</p>
+        </div>
+      </header>
+
+      <section aria-labelledby="facts-title">
+        <h2 id="facts-title">Сентябрь в цифрах</h2>
+        <dl class="stats">
+          <div>
+            <dt>Потрачено</dt>
+            <dd class="key-figure">2 400 ₽</dd>
+          </div>
+          <div>
+            <dt>Лимит на месяц</dt>
+            <dd>3 000 ₽</dd>
+          </div>
+          <div>
+            <dt>Записей</dt>
+            <dd>1</dd>
+          </div>
+          <div>
+            <dt>Средний чек</dt>
+            <dd>2 400 ₽</dd>
+          </div>
+          <div>
+            <dt>Тип расходов</dt>
+            <dd class="word">необязательные</dd>
+          </div>
+        </dl>
+        <p class="meter-line">
+          <label for="limit-meter">До лимита осталось 600 ₽</label>
+          <meter id="limit-meter" value="2400" min="0" max="3000" low="1500" high="2400" optimum="0">2 400 ₽ из 3 000 ₽</meter>
+        </p>
+      </section>
+
+      <section aria-labelledby="records-title">
+        <h2 id="records-title">Записи в категории</h2>
+        <ul class="expense-list">
+          <li class="expense">
+            <img src="img/categories/sport.svg" alt="Иконка категории «Спорт»: гантель" width="40" height="40">
+            <div class="expense-body">
+              <span class="expense-title">Абонемент в бассейн</span>
+              <span class="expense-meta">
+                <time datetime="2026-09-05">5 сентября</time>,
+                8 занятий
+              </span>
+            </div>
+            <span class="amount">2 400 ₽</span>
+          </li>
+        </ul>
+        <p><a class="button" href="add.html">Добавить запись</a></p>
+      </section>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <p>Копилка — учебный проект по дисциплине «Введение в интернет-технологии», вариант 23.</p>
+    <p>Записывайте траты сразу — потом их уже не вспомнить.</p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Добавить запись — Копилка</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="img/logo.svg" type="image/svg+xml">
+</head>
+<body>
+  <header class="site-header">
+    <a class="logo" href="index.html">
+      <img src="img/logo.svg" alt="Логотип «Копилка»: зелёный кошелёк с золотой монетой" width="44" height="44">
+      <span>Копилка</span>
+    </a>
+    <nav class="site-nav" aria-label="Основное меню">
+      <ul>
+        <li><a href="index.html">Главная</a></li>
+        <li><a href="expenses.html">Расходы</a></li>
+        <li><a href="add.html" aria-current="page">Добавить запись</a></li>
+        <li><a href="contacts.html">Контакты</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="page">
+    <h1>Новая запись</h1>
+    <p class="lead">Заполните форму: сумма, категория и дата обязательны. Ниже — последние записи и итог за месяц.</p>
+
+    <div class="two-columns">
+      <form class="card-form" action="add.html" method="post" aria-labelledby="form-title">
+        <h2 id="form-title">Что вы потратили</h2>
+        <div class="field">
+          <label for="amount">Сумма, ₽</label>
+          <input id="amount" name="amount" type="number" min="1" step="1" placeholder="Например, 350" required>
+        </div>
+        <div class="field">
+          <label for="category">Категория</label>
+          <select id="category" name="category" required>
+            <option value="">Выберите категорию</option>
+            <option value="groceries">Продукты</option>
+            <option value="cafe">Кафе и рестораны</option>
+            <option value="transport">Транспорт</option>
+            <option value="housing">Жильё и ЖКУ</option>
+            <option value="connection">Связь и интернет</option>
+            <option value="health">Здоровье</option>
+            <option value="clothes">Одежда и обувь</option>
+            <option value="entertainment">Развлечения</option>
+            <option value="education">Образование</option>
+            <option value="sport">Спорт</option>
+            <option value="gifts">Подарки</option>
+            <option value="home">Дом и быт</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="date">Дата</label>
+          <input id="date" name="date" type="date" value="2026-09-18" required>
+        </div>
+        <div class="field">
+          <label for="title">Название</label>
+          <input id="title" name="title" type="text" maxlength="80" placeholder="Например, обед в столовой">
+        </div>
+        <div class="field">
+          <label for="note">Комментарий</label>
+          <textarea id="note" name="note" rows="3" placeholder="Где, с кем, зачем"></textarea>
+        </div>
+        <button class="button" type="submit">Сохранить запись</button>
+      </form>
+
+      <section aria-labelledby="recent-title">
+        <h2 id="recent-title">Последние записи</h2>
+        <ul class="expense-list">
+          <li class="expense">
+            <img src="img/categories/cafe.svg" alt="Иконка категории «Кафе и рестораны»: чашка кофе" width="40" height="40">
+            <div class="expense-body">
+              <span class="expense-title">Обед в столовой</span>
+              <span class="expense-meta">
+                <time datetime="2026-09-18">18 сентября</time>,
+                <a href="category-cafe.html">Кафе и рестораны</a>
+              </span>
+            </div>
+            <span class="amount">340 ₽</span>
+          </li>
+          <li class="expense">
+            <img src="img/categories/education.svg" alt="Иконка категории «Образование»: раскрытая книга" width="40" height="40">
+            <div class="expense-body">
+              <span class="expense-title">Онлайн-курс по CSS</span>
+              <span class="expense-meta">
+                <time datetime="2026-09-17">17 сентября</time>,
+                <a href="category-education.html">Образование</a>
+              </span>
+            </div>
+            <span class="amount">1 990 ₽</span>
+          </li>
+          <li class="expense">
+            <img src="img/categories/home.svg" alt="Иконка категории «Дом и быт»: лампочка" width="40" height="40">
+            <div class="expense-body">
+              <span class="expense-title">Средства для уборки</span>
+              <span class="expense-meta">
+                <time datetime="2026-09-16">16 сентября</time>,
+                <a href="category-home.html">Дом и быт</a>
+              </span>
+            </div>
+            <span class="amount">560 ₽</span>
+          </li>
+          <li class="expense">
+            <img src="img/categories/groceries.svg" alt="Иконка категории «Продукты»: корзина с покупками" width="40" height="40">
+            <div class="expense-body">
+              <span class="expense-title">Продукты на неделю</span>
+              <span class="expense-meta">
+                <time datetime="2026-09-16">16 сентября</time>,
+                <a href="category-groceries.html">Продукты</a>
+              </span>
+            </div>
+            <span class="amount">3 120 ₽</span>
+          </li>
+          <li class="expense">
+            <img src="img/categories/health.svg" alt="Иконка категории «Здоровье»: сердце" width="40" height="40">
+            <div class="expense-body">
+              <span class="expense-title">Приём у стоматолога</span>
+              <span class="expense-meta">
+                <time datetime="2026-09-15">15 сентября</time>,
+                <a href="category-health.html">Здоровье</a>
+              </span>
+            </div>
+            <span class="amount">2 200 ₽</span>
+          </li>
+        </ul>
+        <p><a href="expenses.html">Все записи за месяц</a></p>
+      </section>
+    </div>
+
+    <section aria-labelledby="period-title">
+      <h2 id="period-title">Итог за сентябрь: 46 960 ₽</h2>
+      <ul class="summary-list">
+        <li>
+          <a href="category-groceries.html">Продукты</a>
+          <meter value="10120" min="0" max="15000" low="7500" high="12000" optimum="0" title="10 120 ₽ из 15 000 ₽">10 120 ₽ из 15 000 ₽</meter>
+          <span class="amount">10 120 ₽</span>
+        </li>
+        <li>
+          <a href="category-housing.html">Жильё и ЖКУ</a>
+          <meter value="9870" min="0" max="12000" low="6000" high="9600" optimum="0" title="9 870 ₽ из 12 000 ₽">9 870 ₽ из 12 000 ₽</meter>
+          <span class="amount">9 870 ₽</span>
+        </li>
+        <li>
+          <a href="category-clothes.html">Одежда и обувь</a>
+          <meter value="4590" min="0" max="5000" low="2500" high="4000" optimum="0" title="4 590 ₽ из 5 000 ₽">4 590 ₽ из 5 000 ₽</meter>
+          <span class="amount">4 590 ₽</span>
+        </li>
+        <li>
+          <a href="category-education.html">Образование</a>
+          <meter value="3440" min="0" max="5000" low="2500" high="4000" optimum="0" title="3 440 ₽ из 5 000 ₽">3 440 ₽ из 5 000 ₽</meter>
+          <span class="amount">3 440 ₽</span>
+        </li>
+        <li>
+          <a href="category-transport.html">Транспорт</a>
+          <meter value="3380" min="0" max="4000" low="2000" high="3200" optimum="0" title="3 380 ₽ из 4 000 ₽">3 380 ₽ из 4 000 ₽</meter>
+          <span class="amount">3 380 ₽</span>
+        </li>
+        <li>
+          <a href="category-health.html">Здоровье</a>
+          <meter value="3000" min="0" max="3000" low="1500" high="2400" optimum="0" title="3 090 ₽ из 3 000 ₽">3 090 ₽ из 3 000 ₽</meter>
+          <span class="amount">3 090 ₽</span>
+        </li>
+        <li>
+          <a href="category-entertainment.html">Развлечения</a>
+          <meter value="2700" min="0" max="4000" low="2000" high="3200" optimum="0" title="2 700 ₽ из 4 000 ₽">2 700 ₽ из 4 000 ₽</meter>
+          <span class="amount">2 700 ₽</span>
+        </li>
+        <li>
+          <a href="category-gifts.html">Подарки</a>
+          <meter value="2500" min="0" max="3000" low="1500" high="2400" optimum="0" title="2 500 ₽ из 3 000 ₽">2 500 ₽ из 3 000 ₽</meter>
+          <span class="amount">2 500 ₽</span>
+        </li>
+        <li>
+          <a href="category-sport.html">Спорт</a>
+          <meter value="2400" min="0" max="3000" low="1500" high="2400" optimum="0" title="2 400 ₽ из 3 000 ₽">2 400 ₽ из 3 000 ₽</meter>
+          <span class="amount">2 400 ₽</span>
+        </li>
+        <li>
+          <a href="category-cafe.html">Кафе и рестораны</a>
+          <meter value="2320" min="0" max="6000" low="3000" high="4800" optimum="0" title="2 320 ₽ из 6 000 ₽">2 320 ₽ из 6 000 ₽</meter>
+          <span class="amount">2 320 ₽</span>
+        </li>
+        <li>
+          <a href="category-connection.html">Связь и интернет</a>
+          <meter value="1350" min="0" max="1500" low="750" high="1200" optimum="0" title="1 350 ₽ из 1 500 ₽">1 350 ₽ из 1 500 ₽</meter>
+          <span class="amount">1 350 ₽</span>
+        </li>
+        <li>
+          <a href="category-home.html">Дом и быт</a>
+          <meter value="1200" min="0" max="4000" low="2000" high="3200" optimum="0" title="1 200 ₽ из 4 000 ₽">1 200 ₽ из 4 000 ₽</meter>
+          <span class="amount">1 200 ₽</span>
+        </li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Копилка — учебный проект по дисциплине «Введение в интернет-технологии», вариант 23.</p>
+    <p>Записывайте траты сразу — потом их уже не вспомнить.</p>
+  </footer>
+</body>
+</html>

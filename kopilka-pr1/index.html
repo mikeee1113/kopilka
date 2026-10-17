@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Главная — Копилка</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="img/logo.svg" type="image/svg+xml">
+</head>
+<body>
+  <header class="site-header">
+    <a class="logo" href="index.html">
+      <img src="img/logo.svg" alt="Логотип «Копилка»: зелёный кошелёк с золотой монетой" width="44" height="44">
+      <span>Копилка</span>
+    </a>
+    <nav class="site-nav" aria-label="Основное меню">
+      <ul>
+        <li><a href="index.html" aria-current="page">Главная</a></li>
+        <li><a href="expenses.html">Расходы</a></li>
+        <li><a href="add.html">Добавить запись</a></li>
+        <li><a href="contacts.html">Контакты</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="page">
+    <section class="hero">
+      <h1>Куда уходят деньги</h1>
+      <p class="lead">
+        Копилка — простой дневник личных расходов. Записывайте каждую трату,
+        относите её к категории и в конце месяца смотрите, на что ушло больше всего.
+      </p>
+      <p class="actions">
+        <a class="button" href="add.html">Добавить запись</a>
+        <a class="button button-secondary" href="expenses.html">Все расходы</a>
+      </p>
+    </section>
+
+    <section aria-labelledby="summary-title">
+      <h2 id="summary-title">Сентябрь 2026</h2>
+      <dl class="stats">
+        <div>
+          <dt>Потрачено</dt>
+          <dd>46 960 ₽</dd>
+        </div>
+        <div>
+          <dt>Записей</dt>
+          <dd>24</dd>
+        </div>
+        <div>
+          <dt>Бюджет на месяц</dt>
+          <dd>65 500 ₽</dd>
+        </div>
+      </dl>
+      <p class="meter-line">
+        <label for="budget-meter">Использовано 72% бюджета</label>
+        <meter id="budget-meter" value="46960" min="0" max="65500" low="32750" high="52400" optimum="0">46 960 ₽ из 65 500 ₽</meter>
+      </p>
+    </section>
+
+    <section aria-labelledby="featured-title">
+      <h2 id="featured-title">Основные категории</h2>
+      <ul class="category-grid">
+        <li>
+          <a class="category-card" href="category-groceries.html">
+            <img src="img/categories/groceries.svg" alt="Иконка категории «Продукты»: корзина с покупками" width="64" height="64">
+            <span class="category-name">Продукты</span>
+            <span class="category-spent">10 120 ₽ из 15 000 ₽</span>
+          </a>
+        </li>
+        <li>
+          <a class="category-card" href="category-cafe.html">
+            <img src="img/categories/cafe.svg" alt="Иконка категории «Кафе и рестораны»: чашка кофе" width="64" height="64">
+            <span class="category-name">Кафе и рестораны</span>
+            <span class="category-spent">2 320 ₽ из 6 000 ₽</span>
+          </a>
+        </li>
+        <li>
+          <a class="category-card" href="category-transport.html">
+            <img src="img/categories/transport.svg" alt="Иконка категории «Транспорт»: автобус" width="64" height="64">
+            <span class="category-name">Транспорт</span>
+            <span class="category-spent">3 380 ₽ из 4 000 ₽</span>
+          </a>
+        </li>
+        <li>
+          <a class="category-card" href="category-housing.html">
+            <img src="img/categories/housing.svg" alt="Иконка категории «Жильё и ЖКУ»: дом" width="64" height="64">
+            <span class="category-name">Жильё и ЖКУ</span>
+            <span class="category-spent">9 870 ₽ из 12 000 ₽</span>
+          </a>
+        </li>
+        <li>
+          <a class="category-card" href="category-connection.html">
+            <img src="img/categories/connection.svg" alt="Иконка категории «Связь и интернет»: значок Wi-Fi" width="64" height="64">
+            <span class="category-name">Связь и интернет</span>
+            <span class="category-spent">1 350 ₽ из 1 500 ₽</span>
+          </a>
+        </li>
+        <li>
+          <a class="category-card" href="category-health.html">
+            <img src="img/categories/health.svg" alt="Иконка категории «Здоровье»: сердце" width="64" height="64">
+            <span class="category-name">Здоровье</span>
+            <span class="category-spent">3 090 ₽ из 3 000 ₽</span>
+          </a>
+        </li>
+      </ul>
+      <p><a href="expenses.html">Все категории и записи</a></p>
+    </section>
+
+    <section aria-labelledby="howto-title">
+      <h2 id="howto-title">Как вести учёт</h2>
+      <ol class="steps">
+        <li><strong>Записывайте.</strong> Каждую трату — в день покупки: сумма, категория, пара слов.</li>
+        <li><strong>Смотрите.</strong> Список расходов показывает, что было куплено и когда.</li>
+        <li><strong>Сравнивайте.</strong> У каждой категории есть лимит; сводка покажет, где он превышен.</li>
+      </ol>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Копилка — учебный проект по дисциплине «Введение в интернет-технологии», вариант 23.</p>
+    <p>Записывайте траты сразу — потом их уже не вспомнить.</p>
+  </footer>
+</body>
+</html>
