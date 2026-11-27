@@ -6,6 +6,8 @@
   <title>Контакты — Копилка</title>
   <link rel="stylesheet" href="css/style.css">
   <link rel="icon" href="img/logo.svg" type="image/svg+xml">
+  <script src="js/common.js" defer></script>
+  <script src="js/feedback.js" defer></script>
 </head>
 <body>
   <header class="site-header">
@@ -19,6 +21,7 @@
         <li><a href="expenses.html">Расходы</a></li>
         <li><a href="add.html">Добавить запись</a></li>
         <li><a href="contacts.html" aria-current="page">Контакты</a></li>
+        <li><a class="nav-account" id="nav-account" href="login.html">Войти</a></li>
       </ul>
     </nav>
   </header>
@@ -28,7 +31,7 @@
     <p class="lead">Вопросы, найденные ошибки и предложения по сайту — пишите или звоните.</p>
 
     <div class="two-columns">
-      <section aria-labelledby="where-title">
+      <section class="panel" aria-labelledby="where-title">
         <h2 id="where-title">Как с нами связаться</h2>
         <address class="contact-card">
           <p><strong>Адрес</strong><br>190005, Санкт-Петербург, 1-я Красноармейская ул., д. 1</p>
@@ -44,30 +47,47 @@
         <p class="slogan">Записывайте траты сразу — потом их уже не вспомнить.</p>
       </section>
 
-      <form class="card-form" action="contacts.html" method="post" aria-labelledby="feedback-title">
+      <form class="panel" id="feedback-form" action="contacts.html" method="post" aria-labelledby="feedback-title">
         <h2 id="feedback-title">Написать нам</h2>
         <div class="field">
           <label for="name">Ваше имя</label>
-          <input id="name" name="name" type="text" maxlength="60" autocomplete="name" required>
+          <input id="name" name="name" type="text" maxlength="60" autocomplete="name" required aria-describedby="name-error">
+          <p class="field-error" id="name-error" hidden></p>
         </div>
         <div class="field">
           <label for="email">Электронная почта</label>
-          <input id="email" name="email" type="email" placeholder="name@example.com" autocomplete="email" required>
+          <input id="email" name="email" type="email" placeholder="name@example.com" autocomplete="email" required aria-describedby="email-error">
+          <p class="field-error" id="email-error" hidden></p>
         </div>
         <div class="field">
           <label for="topic">Тема</label>
-          <select id="topic" name="topic">
+          <select id="topic" name="topic" aria-describedby="topic-error">
             <option value="question">Вопрос</option>
             <option value="bug">Ошибка на сайте</option>
             <option value="idea">Предложение</option>
           </select>
+          <p class="field-error" id="topic-error" hidden></p>
         </div>
         <div class="field">
           <label for="message">Сообщение</label>
-          <textarea id="message" name="message" rows="5" required></textarea>
+          <textarea id="message" name="message" rows="5" maxlength="1000" required aria-describedby="message-error message-counter"></textarea>
+          <p class="field-error" id="message-error" hidden></p>
+          <p class="char-counter" id="message-counter">0 / 1000</p>
         </div>
         <button class="button" type="submit">Отправить</button>
+        <p class="form-status" id="feedback-status" role="status"></p>
       </form>
+
+      <div class="panel form-result" id="feedback-result" tabindex="-1" hidden>
+        <h2>Сообщение отправлено</h2>
+        <p>Спасибо, <span id="result-name"></span>! Сообщение № <span id="result-id"></span> сохранено на сервере:</p>
+        <dl class="result-list">
+          <div><dt>Почта для ответа</dt><dd id="result-email"></dd></div>
+          <div><dt>Тема</dt><dd id="result-topic"></dd></div>
+          <div><dt>Длина сообщения</dt><dd id="result-length"></dd></div>
+        </dl>
+        <button class="button button-secondary" id="feedback-again" type="button">Написать ещё одно сообщение</button>
+      </div>
     </div>
   </main>
 

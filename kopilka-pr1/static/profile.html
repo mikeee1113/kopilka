@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Профиль — Копилка</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="img/logo.svg" type="image/svg+xml">
+  <script src="js/common.js" defer></script>
+  <script src="js/profile.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="logo" href="index.html">
+      <img src="img/logo.svg" alt="Логотип «Копилка»: зелёный кошелёк с золотой монетой" width="44" height="44">
+      <span>Копилка</span>
+    </a>
+    <nav class="site-nav" aria-label="Основное меню">
+      <ul>
+        <li><a href="index.html">Главная</a></li>
+        <li><a href="expenses.html">Расходы</a></li>
+        <li><a href="add.html">Добавить запись</a></li>
+        <li><a href="contacts.html">Контакты</a></li>
+        <li><a class="nav-account" id="nav-account" href="login.html" aria-current="page">Войти</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="page">
+    <h1>Профиль</h1>
+    <p class="lead" id="profile-greeting">Загружаем данные профиля с сервера…</p>
+
+    <div class="two-columns">
+      <section class="panel" aria-labelledby="account-title">
+        <h2 id="account-title">Ваш аккаунт</h2>
+        <dl class="result-list">
+          <div><dt>Имя</dt><dd id="profile-name">—</dd></div>
+          <div><dt>Почта</dt><dd id="profile-email">—</dd></div>
+          <div><dt>Зарегистрированы</dt><dd id="profile-created">—</dd></div>
+        </dl>
+        <dl class="stats">
+          <div><dt>Записей</dt><dd id="stat-count">—</dd></div>
+          <div><dt>Потрачено всего</dt><dd id="stat-total" class="key-figure">—</dd></div>
+        </dl>
+        <p id="stat-period" class="field-hint"></p>
+        <p class="actions">
+          <button class="button button-secondary" id="logout-button" type="button">Выйти</button>
+        </p>
+        <p class="form-status" id="logout-status" role="status"></p>
+      </section>
+
+      <form class="panel" id="profile-form" action="profile.html" method="post" aria-labelledby="settings-title">
+        <h2 id="settings-title">Настройки</h2>
+        <div class="field">
+          <label for="name">Имя</label>
+          <input id="name" name="name" type="text" maxlength="60" autocomplete="given-name" required aria-describedby="name-error">
+          <p class="field-error" id="name-error" hidden></p>
+        </div>
+        <div class="field">
+          <label for="monthly_budget">Бюджет на месяц, ₽</label>
+          <input id="monthly_budget" name="monthly_budget" type="text" inputmode="numeric" autocomplete="off" required aria-describedby="monthly_budget-hint monthly_budget-error">
+          <p class="field-hint" id="monthly_budget-hint">От 1 000 до 10 000 000 ₽. По нему главная страница считает остаток.</p>
+          <p class="field-error" id="monthly_budget-error" hidden></p>
+        </div>
+        <button class="button" type="submit">Сохранить</button>
+        <p class="form-status" id="profile-status" role="status"></p>
+      </form>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>Копилка — учебный проект по дисциплине «Введение в интернет-технологии», вариант 23.</p>
+    <p>Записывайте траты сразу — потом их уже не вспомнить.</p>
+  </footer>
+</body>
+</html>

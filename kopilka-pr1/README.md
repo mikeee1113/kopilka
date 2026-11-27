@@ -1,54 +1,85 @@
 # Копилка — учёт личных расходов
 
-Учебный проект по дисциплине «Введение в интернет-технологии».
-**Вариант 23** (группа Г «Учёт и статистика»): категории трат, сводка за период, простая диаграмма.
+Учебный проект по дисциплине «Введение в интернет-технологии», вариант 23.
+Практическая работа 3: сайт с сервером на FastAPI и базой данных SQLite.
 
-## Как запустить
+## Как запустить (Windows)
 
-Сервер не нужен: откройте файл `index.html` в любом современном браузере (двойной щелчок по файлу).
-Все ссылки относительные, поэтому сайт работает из любой папки.
+1. Установите Python 3.10 или новее с python.org (галочка «Add python.exe to PATH»).
+2. Дважды щёлкните `start.bat` в папке проекта. Он создаст окружение `.venv`, установит зависимости и запустит сервер.
+3. Откройте в браузере http://127.0.0.1:8000 — сайт, http://127.0.0.1:8000/docs — описание API.
 
-## Что сделано (практическая работа № 1)
-
-Статическая часть сайта на HTML и CSS.
-
-| Страница | Файл | Что на ней |
-| --- | --- | --- |
-| Главная | `index.html` | назначение сайта, сводка за месяц, 6 основных категорий со ссылками |
-| Список | `expenses.html` | 12 категорий, все 24 записи за месяц, итог; размечены фильтр и сортировка |
-| Страница элемента | `category-*.html` (12 шт.) | иконка, описание, потрачено, лимит, средний чек, шкала лимита, записи |
-| Действие пользователя | `add.html` | форма новой записи, последние записи, итог за месяц по категориям |
-| Контакты | `contacts.html` | адрес, телефон, почта, режим работы, слоган, форма обратной связи |
-| Ошибка 404 | `404.html` | сообщение и ссылки на главную и список |
-
-- семантическая разметка: `header`, `nav`, `main`, `section`, `article`, `footer`, `address`, `time`, `meter`;
-- на каждой странице один `h1`, у всех изображений заполнен `alt`, кодировка UTF-8, `lang="ru"`, viewport;
-- один общий файл стилей `css/style.css`, атрибут `style` не используется, макет на Flexbox и Grid;
-- страницы корректно отображаются при ширине 360 px, по меню можно пройти клавишей Tab;
-- собственный логотип и иконки категорий в формате SVG;
-- все страницы проходят проверку валидатором W3C без ошибок.
-
-Фильтр, сортировка и формы пока только размечены: при отправке страница просто перезагружается.
-
-## Структура
+Вручную (PowerShell, из папки проекта):
 
 ```
-kopilka-pr1/
-├── index.html, expenses.html, add.html, contacts.html, 404.html
-├── category-groceries.html … category-home.html   (12 страниц категорий)
-├── css/style.css          общий файл стилей
-├── img/logo.svg           логотип
-├── img/categories/        иконки категорий
-├── docs/tz.md             техническое задание
-├── docs/maket.png         набросок макета
-└── README.md
+py -m venv .venv
+.venv\Scripts\activate
+pip install -r requirements.txt
+python -m uvicorn app.main:app --reload
 ```
 
-## Как заменить изображения
+Файл базы `data/kopilka.db` создаётся и заполняется сам при первом запуске; в репозиторий он не попадает (`.gitignore`).
+Чтобы начать с чистыми данными, остановите сервер (Ctrl+C) и удалите этот файл.
 
-Проще всего положить свою картинку под тем же именем: например, свой логотип — вместо `img/logo.svg`,
-свою иконку продуктов — вместо `img/categories/groceries.svg`.
+**Демо-аккаунт:** `demo@example.com` / `kopilka-demo` — 24 записи за сентябрь 2026 года.
 
-Если файл другого формата (например, `groceries.png`), замените путь во всех страницах поиском
-по файлам в редакторе (в VS Code — Ctrl+Shift+H): `img/categories/groceries.svg` → `img/categories/groceries.png`.
-Размер картинки — не больше 256×256 пикселей.
+## Структура проекта
+
+```
+app/            сервер
+  main.py       адреса API, проверка входа, раздача страниц
+  db.py         подключение к SQLite и таблицы
+  schemas.py    проверка данных запросов (Pydantic)
+  security.py   хеширование паролей (argon2) и сессии
+  places.py     поиск мест через Nominatim (OpenStreetMap)
+  seed.py       начальные данные
+static/         страницы сайта, стили, скрипты, картинки
+data/           файл базы (создаётся сам)
+docs/           техническое задание и макет
+start.bat       запуск в Windows
+```
+
+## База данных
+
+Пять таблиц; главная — `expenses` (24 начальные записи).
+
+| Таблица | Поля | Связи |
+|---|---|---|
+| `users` — пользователи | `id` INTEGER PK, `email` TEXT UNIQUE, `name` TEXT, `password_hash` TEXT (хеш argon2), `monthly_budget` INTEGER, `created_at` TEXT | — |
+| `categories` — категории | `id` INTEGER PK, `slug` TEXT UNIQUE, `name` TEXT, `description` TEXT, `icon` TEXT, `icon_alt` TEXT, `monthly_limit` INTEGER, `essential` INTEGER (0/1) | — |
+| `expenses` — расходы | `id` INTEGER PK, `user_id` INTEGER, `category_id` INTEGER, `amount` INTEGER (₽), `spent_on` TEXT (ГГГГ-ММ-ДД), `title` TEXT, `note` TEXT, `original_amount` REAL, `original_currency` TEXT, `place` TEXT, `place_lat` REAL, `place_lon` REAL, `created_at` TEXT | `user_id` → `users.id` (многие к одному, ON DELETE CASCADE); `category_id` → `categories.id` (многие к одному, ON DELETE RESTRICT) |
+| `sessions` — сессии входа | `token_hash` TEXT PK (SHA-256 токена), `user_id` INTEGER, `created_at` TEXT, `expires_at` TEXT | `user_id` → `users.id` (ON DELETE CASCADE) |
+| `feedback` — обратная связь | `id` INTEGER PK, `name` TEXT, `email` TEXT, `topic` TEXT, `message` TEXT, `created_at` TEXT | — |
+
+## API
+
+| Метод и адрес | Что делает | Вход |
+|---|---|---|
+| `GET /api/categories` | список категорий | не нужен |
+| `GET /api/categories/{slug}` | одна категория (404, если нет) | не нужен |
+| `POST /api/register` | регистрация, сразу вход (201; 409 — почта занята) | не нужен |
+| `POST /api/login` | вход (401 — неверная почта или пароль) | не нужен |
+| `POST /api/logout` | выход | — |
+| `GET /api/session` | кто вошёл (гостю — `user: null`) | не нужен |
+| `GET /api/me`, `PATCH /api/me` | профиль со статистикой; изменить имя и бюджет | нужен |
+| `GET /api/expenses` | свои записи: `category`, `date_from`, `date_to`, `q`, `sort`, `limit`, `offset` | нужен |
+| `GET /api/expenses/{id}` | одна своя запись (чужая — 404) | нужен |
+| `POST /api/expenses` | добавить запись (201) | нужен |
+| `DELETE /api/expenses/{id}` | удалить свою запись (204) | нужен |
+| `GET /api/summary?month=ГГГГ-ММ` | итоги месяца по категориям | нужен |
+| `GET /api/places?q=…` | поиск места через OpenStreetMap | нужен |
+| `POST /api/feedback` | сообщение из формы «Контакты» (201) | не нужен |
+
+Ошибки приходят в JSON по-русски: `{"detail": "...", "errors": [{"field": "...", "message": "..."}]}`.
+
+## Безопасность
+
+- Пароль хранится только как хеш argon2 (библиотека argon2-cffi).
+- После входа браузер получает случайный токен в cookie `kopilka_session` (HttpOnly, SameSite=Lax, 7 дней); в базе лежит только его хеш.
+- Все SQL-запросы параметризованные (`?`); сортировка выбирается из списка, а не вставляется из адреса.
+- Права проверяются на сервере: каждый запрос к записям ищет запись по номеру и владельцу.
+
+## Внешние данные
+
+- **Курсы ЦБ РФ** — https://www.cbr-xml-daily.ru/daily_json.js, запрашиваются браузером на странице «Добавить запись».
+- **Nominatim (OpenStreetMap)** — https://nominatim.org/, поиск места траты. Запрос делает сервер (`app/places.py`): с заголовком User-Agent, не чаще раза в секунду, с запоминанием ответов на сутки, только по кнопке «Найти». Данные © участники OpenStreetMap.

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Добавить запись — Копилка</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="img/logo.svg" type="image/svg+xml">
+  <script src="js/common.js" defer></script>
+  <script src="js/rates.js" defer></script>
+  <script src="js/places.js" defer></script>
+  <script src="js/add-record.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="logo" href="index.html">
+      <img src="img/logo.svg" alt="Логотип «Копилка»: зелёный кошелёк с золотой монетой" width="44" height="44">
+      <span>Копилка</span>
+    </a>
+    <nav class="site-nav" aria-label="Основное меню">
+      <ul>
+        <li><a href="index.html">Главная</a></li>
+        <li><a href="expenses.html">Расходы</a></li>
+        <li><a href="add.html" aria-current="page">Добавить запись</a></li>
+        <li><a href="contacts.html">Контакты</a></li>
+        <li><a class="nav-account" id="nav-account" href="login.html">Войти</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="page">
+    <h1>Новая запись</h1>
+    <p class="lead">Заполните форму: сумма, категория и дата обязательны. Трату в другой валюте сайт пересчитает в рубли по курсу ЦБ, а место можно найти на карте OpenStreetMap.</p>
+
+    <div class="two-columns">
+      <form class="panel" id="add-form" action="add.html" method="post" aria-labelledby="form-title">
+        <h2 id="form-title">Что вы потратили</h2>
+        <div class="field amount-group">
+          <div class="amount-row">
+            <div class="field">
+              <label for="amount">Сумма</label>
+              <input id="amount" name="amount" type="text" inputmode="decimal" autocomplete="off" placeholder="Например, 350" required aria-describedby="amount-error amount-hint">
+            </div>
+            <div class="field">
+              <label for="currency">Валюта</label>
+              <select id="currency" name="currency" aria-describedby="currency-error">
+                <option value="RUB">RUB</option>
+              </select>
+            </div>
+          </div>
+          <p class="field-error" id="amount-error" hidden></p>
+          <p class="field-error" id="currency-error" hidden></p>
+          <p class="field-hint" id="amount-hint" hidden></p>
+        </div>
+        <div class="field">
+          <label for="category">Категория</label>
+          <select id="category" name="category" required aria-describedby="category-error">
+            <option value="">— выберите —</option>
+          </select>
+          <p class="field-error" id="category-error" hidden></p>
+        </div>
+        <div class="field">
+          <label for="date">Дата</label>
+          <input id="date" name="date" type="date" min="2020-01-01" required aria-describedby="date-error">
+          <p class="field-error" id="date-error" hidden></p>
+        </div>
+        <div class="field">
+          <label for="title">Название</label>
+          <input id="title" name="title" type="text" maxlength="80" placeholder="Например, обед в столовой" aria-describedby="title-error">
+          <p class="field-error" id="title-error" hidden></p>
+        </div>
+        <div class="field">
+          <label for="note">Комментарий</label>
+          <textarea id="note" name="note" rows="3" maxlength="200" placeholder="С кем, зачем" aria-describedby="note-error note-counter"></textarea>
+          <p class="field-error" id="note-error" hidden></p>
+          <p class="char-counter" id="note-counter">0 / 200</p>
+        </div>
+        <div class="field">
+          <label for="place-query">Место — необязательно</label>
+          <div class="search-row">
+            <input id="place-query" name="place_query" type="search" maxlength="200" placeholder="Например, Пятёрочка Невский 100" autocomplete="off" aria-describedby="place-query-error place-hint">
+            <button class="button button-secondary" id="place-search" type="button">Найти</button>
+          </div>
+          <p class="field-error" id="place-query-error" hidden></p>
+          <p class="field-hint" id="place-hint" role="status">Введите название или адрес и нажмите «Найти».</p>
+          <fieldset class="place-results" id="place-results" hidden>
+            <legend>Выберите подходящий вариант</legend>
+            <div id="place-options"></div>
+          </fieldset>
+          <p class="place-chosen" id="place-chosen" hidden>
+            <span>Место: <a id="place-chosen-link" href="https://www.openstreetmap.org/"></a></span>
+            <button class="button button-secondary button-small" id="place-clear" type="button">Убрать</button>
+          </p>
+          <p class="source-note">Поиск — <a href="https://nominatim.org/">Nominatim</a>, данные © участники <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>.</p>
+        </div>
+        <button class="button" type="submit">Сохранить запись</button>
+        <p class="form-status" id="add-status" role="status"></p>
+      </form>
+
+      <div class="side-column">
+        <section class="panel rates-card" id="rates" aria-labelledby="rates-title">
+          <h2 id="rates-title">Курсы ЦБ РФ</h2>
+          <p class="rates-status" id="rates-status" role="status">Курсы загружаются с сайта ЦБ, когда в браузере включён JavaScript.</p>
+          <div id="rates-content"></div>
+          <button class="button button-secondary" id="rates-retry" type="button" hidden>Повторить попытку</button>
+          <p class="rates-source">Источник: <a href="https://www.cbr-xml-daily.ru/">курсы ЦБ РФ в JSON</a> (cbr-xml-daily.ru)</p>
+        </section>
+
+        <section class="panel" aria-labelledby="recent-title">
+          <h2 id="recent-title">Последние записи</h2>
+          <ul class="expense-list" id="recent-list">
+            <li class="loading">Загружаем с сервера…</li>
+          </ul>
+          <p class="more-line"><a href="expenses.html">Все записи</a></p>
+        </section>
+      </div>
+    </div>
+
+    <section class="panel" aria-labelledby="period-title" id="summary">
+      <h2 id="period-title">Итог за месяц</h2>
+      <ul class="summary-list" id="summary-list">
+        <li class="loading">Загружаем с сервера…</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Копилка — учебный проект по дисциплине «Введение в интернет-технологии», вариант 23.</p>
+    <p>Записывайте траты сразу — потом их уже не вспомнить.</p>
+  </footer>
+</body>
+</html>
