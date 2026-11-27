@@ -27,7 +27,8 @@
     <h1>Расходы за сентябрь</h1>
     <p class="lead">24 записи на сумму 46 960 ₽.</p>
 
-    <form class="filters" action="expenses.html" method="get" aria-label="Фильтр и сортировка">
+    <form class="filters" action="expenses.html" method="get" aria-label="Фильтр и сортировка" aria-describedby="filter-note">
+      <p class="form-note" id="filter-note">Фильтр и сортировка заработают в практической работе № 2.</p>
       <div class="field">
         <label for="filter-category">Категория</label>
         <select id="filter-category" name="category">
@@ -63,7 +64,7 @@
           <option value="amount-asc">По возрастанию суммы</option>
         </select>
       </div>
-      <button class="button" type="submit">Показать</button>
+      <button class="button" type="submit" disabled>Показать</button>
     </form>
 
     <section aria-labelledby="categories-title">

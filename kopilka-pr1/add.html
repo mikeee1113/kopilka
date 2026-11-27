@@ -28,8 +28,9 @@
     <p class="lead">Заполните форму: сумма, категория и дата обязательны. Ниже — последние записи и итог за месяц.</p>
 
     <div class="two-columns">
-      <form class="card-form" action="add.html" method="post" aria-labelledby="form-title">
+      <form class="card-form" action="add.html" method="post" aria-labelledby="form-title" aria-describedby="add-note">
         <h2 id="form-title">Что вы потратили</h2>
+        <p class="form-note" id="add-note">Сохранение записи появится в практической работе № 3.</p>
         <div class="field">
           <label for="amount">Сумма, ₽</label>
           <input id="amount" name="amount" type="number" min="1" step="1" placeholder="Например, 350" required>
@@ -64,7 +65,7 @@
           <label for="note">Комментарий</label>
           <textarea id="note" name="note" rows="3" placeholder="Где, с кем, зачем"></textarea>
         </div>
-        <button class="button" type="submit">Сохранить запись</button>
+        <button class="button" type="submit" disabled>Сохранить запись</button>
       </form>
 
       <section aria-labelledby="recent-title">

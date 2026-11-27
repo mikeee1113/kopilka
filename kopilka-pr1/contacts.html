@@ -44,8 +44,9 @@
         <p class="slogan">Записывайте траты сразу — потом их уже не вспомнить.</p>
       </section>
 
-      <form class="card-form" action="contacts.html" method="post" aria-labelledby="feedback-title">
+      <form class="card-form" action="contacts.html" method="post" aria-labelledby="feedback-title" aria-describedby="feedback-note">
         <h2 id="feedback-title">Написать нам</h2>
+        <p class="form-note" id="feedback-note">Форма обратной связи заработает в практической работе № 2.</p>
         <div class="field">
           <label for="name">Ваше имя</label>
           <input id="name" name="name" type="text" maxlength="60" autocomplete="name" required>
@@ -66,7 +67,7 @@
           <label for="message">Сообщение</label>
           <textarea id="message" name="message" rows="5" required></textarea>
         </div>
-        <button class="button" type="submit">Отправить</button>
+        <button class="button" type="submit" disabled>Отправить</button>
       </form>
     </div>
   </main>
