@@ -23,6 +23,7 @@
     GET    /api/places?q=…            поиск места через OpenStreetMap
 """
 
+import os
 import sqlite3
 from contextlib import asynccontextmanager
 from datetime import date
@@ -54,6 +55,7 @@ from .security import (
 )
 
 STATIC_DIR = Path(__file__).resolve().parent.parent / "static"
+SECURE_SESSION_COOKIES = os.getenv("KOPILKA_SECURE_COOKIES") == "1"
 
 
 @asynccontextmanager
@@ -271,6 +273,7 @@ def set_session_cookie(response: Response, token: str) -> None:
         SESSION_COOKIE,
         token,
         max_age=SESSION_DAYS * 24 * 60 * 60,
+        secure=SECURE_SESSION_COOKIES,
         httponly=True,    # скрипты страницы не видят cookie
         samesite="lax",   # чужой сайт не сможет отправить запрос от имени пользователя
         path="/",
@@ -325,7 +328,9 @@ def login(data: LoginIn, response: Response, db: Db):
 @app.post("/api/logout", status_code=204, tags=["Пользователи"])
 def logout(response: Response, db: Db, token: Annotated[str | None, Cookie(alias=SESSION_COOKIE)] = None):
     delete_session(db, token)
-    response.delete_cookie(SESSION_COOKIE, path="/", httponly=True, samesite="lax")
+    response.delete_cookie(
+        SESSION_COOKIE, path="/", secure=SECURE_SESSION_COOKIES, httponly=True, samesite="lax",
+    )
 
 
 @app.get("/api/session", tags=["Пользователи"])
@@ -513,6 +518,12 @@ def send_feedback(data: FeedbackIn, db: Db):
 
 
 # ---------- всё остальное ----------
+
+@app.get("/api/health", tags=["Состояние"])
+def health(db: Db):
+    db.execute("SELECT 1 FROM categories LIMIT 1").fetchone()
+    return {"status": "ok"}
+
 
 @app.api_route("/api/{rest:path}", methods=["GET", "POST", "PUT", "PATCH", "DELETE"], include_in_schema=False)
 def api_fallback(request: Request):
